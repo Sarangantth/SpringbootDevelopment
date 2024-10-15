@@ -11,36 +11,36 @@ public class PostgresqlDemo {
          * Close
          * */
 
-        int sid = 7;
+        int sid = 6;
         String sname = "Mohan";
-        int marks = 39;
+        int marks = 79;
 
         String url = "jdbc:postgresql://localhost:5432/Saran";
         String user = "postgres";
         String password = "Deepikasaran@2305";
-//        String sql = "select * from students"; //Select
+        String sql = "select * from students"; //Select
 //        String sql = "insert into students values (6, 'Mosa', 20)"; //insert
 //        String sql = "update students set sname = 'Deepak' where sid = 6"; //update
-//        String sql = "delete from students where sid =6"; //delete
-        String sql = "insert into students values (?, ?, ?)";
+//        String sql = "delete from students where sid =7"; //delete
+//        String sql = "insert into students values (?, ?, ?)"; //insert prepared statement
 
 //    Class.forName("org.postgresql.Driver");
         Connection conn = DriverManager.getConnection(url, user, password);
         System.out.println("Connections established");
-//        Statement st = conn.createStatement();
-        PreparedStatement st = conn.prepareStatement(sql);
-        st.setInt(1,sid);
-        st.setString(2,sname);
-        st.setInt(3,marks);
+        Statement st = conn.createStatement();
+//        PreparedStatement st = conn.prepareStatement(sql);
+//        st.setInt(1,sid);
+//        st.setString(2,sname);
+//        st.setInt(3,marks);
+//
+//        st.execute();
 
-        st.execute();
-
-//        ResultSet rs = st.executeQuery(sql);
-//        while (rs.next()) {
-//            System.out.print(rs.getInt(1) + " - ");
-//            System.out.print(rs.getString(2) + " - ");
-//            System.out.println(rs.getString(3));
-//        }
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            System.out.print(rs.getInt(1) + " - ");
+            System.out.print(rs.getString(2) + " - ");
+            System.out.println(rs.getString(3));
+        }
 
         conn.close();
         System.out.println("Connection Closed");
